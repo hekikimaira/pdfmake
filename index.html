@@ -38,9 +38,7 @@
     padding: 40px 20px 80px;
   }
 
-  header {
-    margin-bottom: 36px;
-  }
+  header { margin-bottom: 36px; }
 
   header h1 {
     font-size: 28px;
@@ -58,7 +56,6 @@
     font-weight: 300;
   }
 
-  /* Drop Zone */
   .dropzone {
     border: 2px dashed var(--border);
     border-radius: var(--radius);
@@ -67,7 +64,6 @@
     cursor: pointer;
     transition: all 0.25s;
     background: var(--surface);
-    position: relative;
   }
 
   .dropzone:hover, .dropzone.dragover {
@@ -75,15 +71,8 @@
     background: rgba(240, 103, 58, 0.04);
   }
 
-  .dropzone.dragover {
-    transform: scale(1.01);
-  }
-
-  .dropzone-icon {
-    font-size: 40px;
-    margin-bottom: 12px;
-    opacity: 0.6;
-  }
+  .dropzone.dragover { transform: scale(1.01); }
+  .dropzone-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.6; }
 
   .dropzone-text {
     font-size: 15px;
@@ -96,9 +85,33 @@
     font-weight: 600;
   }
 
-  .dropzone input { display: none; }
+  .dropzone-sub {
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 8px;
+    opacity: 0.6;
+  }
 
-  /* File List */
+  .btn-add {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text2);
+    font-size: 13px;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: none;
+  }
+
+  .btn-add:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
   .file-list {
     margin-top: 20px;
     display: flex;
@@ -109,36 +122,18 @@
   .file-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 12px 14px;
-    cursor: grab;
+    padding: 10px 12px;
     transition: all 0.2s;
     user-select: none;
   }
 
   .file-item:hover {
-    border-color: var(--accent);
+    border-color: #3a3c48;
     background: var(--surface2);
-  }
-
-  .file-item.dragging {
-    opacity: 0.4;
-    transform: scale(0.97);
-  }
-
-  .file-item.drag-over {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent);
-  }
-
-  .file-grip {
-    color: var(--text2);
-    font-size: 16px;
-    flex-shrink: 0;
-    cursor: grab;
   }
 
   .file-num {
@@ -147,8 +142,8 @@
     font-weight: 600;
     color: var(--accent);
     background: rgba(240, 103, 58, 0.12);
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -176,25 +171,50 @@
     margin-top: 2px;
   }
 
-  .file-remove {
+  .file-controls {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .file-btn {
     background: none;
-    border: none;
+    border: 1px solid var(--border);
     color: var(--text2);
     cursor: pointer;
-    font-size: 18px;
-    padding: 4px;
-    border-radius: 4px;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.15s;
-    flex-shrink: 0;
     line-height: 1;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .file-remove:hover {
+  .file-btn:hover:not(:disabled) {
+    color: var(--text);
+    border-color: var(--text2);
+    background: var(--surface2);
+  }
+
+  .file-btn:active:not(:disabled) {
+    background: var(--border);
+  }
+
+  .file-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+
+  .file-btn.remove:hover {
     color: var(--red);
-    background: rgba(248, 113, 113, 0.1);
+    border-color: var(--red);
+    background: rgba(248, 113, 113, 0.08);
   }
 
-  /* Actions */
   .actions {
     margin-top: 28px;
     display: flex;
@@ -245,7 +265,6 @@
     color: var(--red);
   }
 
-  /* Status */
   .status {
     margin-top: 16px;
     padding: 12px 16px;
@@ -283,11 +302,11 @@
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.6s linear infinite;
+    flex-shrink: 0;
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Progress */
   .progress-bar {
     width: 100%;
     height: 3px;
@@ -308,16 +327,6 @@
     width: 0%;
   }
 
-  /* Empty state */
-  .empty-hint {
-    text-align: center;
-    color: var(--text2);
-    font-size: 12px;
-    margin-top: 12px;
-    opacity: 0.6;
-  }
-
-  /* Filename input */
   .filename-row {
     margin-top: 20px;
     display: flex;
@@ -344,9 +353,7 @@
     transition: border-color 0.15s;
   }
 
-  .filename-input:focus {
-    border-color: var(--accent);
-  }
+  .filename-input:focus { border-color: var(--accent); }
 
   .filename-ext {
     font-size: 13px;
@@ -366,7 +373,7 @@
 <div class="container">
   <header>
     <h1>PDF まとめるやつ</h1>
-    <p>ドラッグ&ドロップで追加 → 並び替え → 結合。全部ブラウザ内で完結。</p>
+    <p>PDFを追加 → 並び替え → 結合。全部ブラウザ内で完結。</p>
   </header>
 
   <div class="dropzone" id="dropzone">
@@ -374,11 +381,12 @@
     <div class="dropzone-text">
       PDFをここにドロップ or <strong>クリックして選択</strong>
     </div>
-    <input type="file" id="fileInput" accept=".pdf" multiple>
+    <div class="dropzone-sub">複数ファイル選択OK</div>
   </div>
 
+  <button class="btn-add" id="btnAdd">＋ PDFを追加</button>
+
   <div class="file-list" id="fileList"></div>
-  <div class="empty-hint" id="emptyHint" style="display:none">ドラッグで並び替えできます</div>
 
   <div class="filename-row" id="filenameRow" style="display:none">
     <label>ファイル名:</label>
@@ -405,16 +413,14 @@
 const { PDFDocument } = PDFLib;
 
 let files = [];
-let dragSrcIdx = null;
 
 const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
 const fileList = document.getElementById('fileList');
-const emptyHint = document.getElementById('emptyHint');
 const filenameRow = document.getElementById('filenameRow');
 const actions = document.getElementById('actions');
 const btnMerge = document.getElementById('btnMerge');
 const btnClear = document.getElementById('btnClear');
+const btnAdd = document.getElementById('btnAdd');
 const status = document.getElementById('status');
 const statusSpinner = document.getElementById('statusSpinner');
 const statusText = document.getElementById('statusText');
@@ -422,8 +428,23 @@ const progressBar = document.getElementById('progressBar');
 const progressFill = document.getElementById('progressFill');
 const filenameInput = document.getElementById('filenameInput');
 
-// Dropzone events
-dropzone.addEventListener('click', () => fileInput.click());
+function openFilePicker() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.pdf,application/pdf';
+  input.multiple = true;
+  input.style.display = 'none';
+  document.body.appendChild(input);
+  input.addEventListener('change', () => {
+    if (input.files && input.files.length > 0) {
+      addFiles(input.files);
+    }
+    document.body.removeChild(input);
+  });
+  input.click();
+}
+
+dropzone.addEventListener('click', openFilePicker);
 dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
 dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
 dropzone.addEventListener('drop', e => {
@@ -431,7 +452,8 @@ dropzone.addEventListener('drop', e => {
   dropzone.classList.remove('dragover');
   addFiles(e.dataTransfer.files);
 });
-fileInput.addEventListener('change', e => { addFiles(e.target.files); fileInput.value = ''; });
+
+btnAdd.addEventListener('click', openFilePicker);
 
 function formatSize(bytes) {
   if (bytes < 1024) return bytes + ' B';
@@ -439,18 +461,38 @@ function formatSize(bytes) {
   return (bytes / 1048576).toFixed(1) + ' MB';
 }
 
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
 async function addFiles(fileListInput) {
-  for (const f of fileListInput) {
+  const arr = Array.from(fileListInput);
+  for (const f of arr) {
     if (f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf')) {
       let pages = '?';
       try {
         const buf = await f.arrayBuffer();
         const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
         pages = doc.getPageCount();
-      } catch(e) { /* skip page count */ }
+      } catch(e) {}
       files.push({ file: f, name: f.name, size: f.size, pages });
     }
   }
+  render();
+}
+
+function moveFile(fromIdx, toIdx) {
+  if (toIdx < 0 || toIdx >= files.length) return;
+  const [moved] = files.splice(fromIdx, 1);
+  files.splice(toIdx, 0, moved);
+  render();
+}
+
+function removeFile(idx) {
+  files.splice(idx, 1);
+  hideStatus();
   render();
 }
 
@@ -460,62 +502,28 @@ function render() {
 
   actions.style.display = hasFiles ? 'flex' : 'none';
   filenameRow.style.display = hasFiles ? 'flex' : 'none';
-  emptyHint.style.display = files.length > 1 ? 'block' : 'none';
+  btnAdd.style.display = hasFiles ? 'block' : 'none';
   btnMerge.disabled = files.length < 2;
 
   files.forEach((f, i) => {
     const el = document.createElement('div');
     el.className = 'file-item';
-    el.draggable = true;
-    el.dataset.idx = i;
     el.innerHTML = `
-      <span class="file-grip">⠿</span>
       <span class="file-num">${i + 1}</span>
       <div class="file-info">
-        <div class="file-name">${f.name}</div>
+        <div class="file-name">${escHtml(f.name)}</div>
         <div class="file-meta">${formatSize(f.size)} · ${f.pages}ページ</div>
       </div>
-      <button class="file-remove" data-idx="${i}">×</button>
+      <div class="file-controls">
+        <button class="file-btn up" title="上へ" ${i === 0 ? 'disabled' : ''}>▲</button>
+        <button class="file-btn down" title="下へ" ${i === files.length - 1 ? 'disabled' : ''}>▼</button>
+        <button class="file-btn remove" title="削除">×</button>
+      </div>
     `;
 
-    // Drag events for reorder
-    el.addEventListener('dragstart', e => {
-      dragSrcIdx = i;
-      el.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    });
-
-    el.addEventListener('dragend', () => {
-      el.classList.remove('dragging');
-      document.querySelectorAll('.file-item').forEach(x => x.classList.remove('drag-over'));
-    });
-
-    el.addEventListener('dragover', e => {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
-      el.classList.add('drag-over');
-    });
-
-    el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
-
-    el.addEventListener('drop', e => {
-      e.preventDefault();
-      e.stopPropagation();
-      el.classList.remove('drag-over');
-      const targetIdx = parseInt(el.dataset.idx);
-      if (dragSrcIdx !== null && dragSrcIdx !== targetIdx) {
-        const [moved] = files.splice(dragSrcIdx, 1);
-        files.splice(targetIdx, 0, moved);
-        render();
-      }
-    });
-
-    el.querySelector('.file-remove').addEventListener('click', e => {
-      e.stopPropagation();
-      files.splice(i, 1);
-      hideStatus();
-      render();
-    });
+    el.querySelector('.up').addEventListener('click', () => moveFile(i, i - 1));
+    el.querySelector('.down').addEventListener('click', () => moveFile(i, i + 1));
+    el.querySelector('.remove').addEventListener('click', () => removeFile(i));
 
     fileList.appendChild(el);
   });
@@ -556,7 +564,6 @@ btnMerge.addEventListener('click', async () => {
       const pages = await merged.copyPages(doc, doc.getPageIndices());
       pages.forEach(p => merged.addPage(p));
       totalPages += pages.length;
-
       progressFill.style.width = `${((i + 1) / files.length) * 90}%`;
     }
 
@@ -570,9 +577,9 @@ btnMerge.addEventListener('click', async () => {
     a.href = url;
     a.download = fname;
     a.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
 
-    showStatus('success', `完了！ ${files.length}ファイル → ${totalPages}ページの${fname}をダウンロードしました`);
+    showStatus('success', `完了！ ${files.length}ファイル → ${totalPages}ページの${fname}をダウンロード`);
   } catch (e) {
     console.error(e);
     showStatus('error', `エラー: ${e.message}`);
